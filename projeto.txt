@@ -1,16 +1,33 @@
 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
+#include "funcoes.h"
 struct matriz{
     int linhas;
     int colunas;
     float x[10][10];
 };
 struct matriz A, B, C;
+
+/*A variável 'a' abaixo se comporta como uma variável booleana. Se a = 0 então não é possível preencher a matriz A.
+Se a = 1 então é possível preencher a matriz A*/
+
+/*A variável 'b' abaixo se comporta como uma variável booleana. Se b = 0 então não é possível preencher a matriz B.
+Se b = 1 então é possível preencher a matriz B*/
+
+/*A variável 'c' abaixo se comporta como uma variável booleana. Se c = 0 então não é possível imprimir a matriz C.
+Se c = 1 então é possível imprimir a matriz C*/
+
+/*A variável 'prcA' abaixo se comporta como uma variável booleana. Se prcA = 0 então não é possível imprimir a matriz A.
+Se prcA = 1 então é possível imprimir a matriz A*/
+
+/*A variável 'prcB' abaixo se comporta como uma variável booleana. Se prcB = 0 então não é possível imprimir a matriz B.
+Se prcB = 1 então é possível imprimir a matriz B*/
 int a = 0, b = 0, c = 0, prcA = 0, prcB = 0;
 
+//A função abaixo define as dimensões da matriz A.
 void tamanhoMatrizA(){
     int i, j;
     printf("Digite o numero de linhas da matriz A (limite de 10 linhas!):\n");
@@ -29,6 +46,7 @@ void tamanhoMatrizA(){
     }
 }
 
+//A função abaixo define as dimensões da matriz B.
 void tamanhoMatrizB(){
     printf("Digite o numero de linhas da matriz B (limite de 10 linhas!):\n");
     scanf("%d", &B.linhas);
@@ -46,6 +64,7 @@ void tamanhoMatrizB(){
     }
 }
 
+//A função abaixo preenche a matriz A com valores aleatórios de 0 a 90.
 void preenchimentoAleatorioMatrizA(){
     int i, j;
     if(a == 0){
@@ -62,6 +81,7 @@ void preenchimentoAleatorioMatrizA(){
     }
 }
 
+//A função abaixo preenche a matriz B com valores aleatórios de 0 a 90.
 void preenchimentoAleatorioMatrizB(){
     int i, j;
     if(b == 0){
@@ -77,6 +97,7 @@ void preenchimentoAleatorioMatrizB(){
     }
 }
 
+//A função abaixo preenche a matriz A com valores definidos pelo usuário.
 void preenchimentoManualMatrizA(){
     int i, j;
     if(a == 0){
@@ -93,6 +114,7 @@ void preenchimentoManualMatrizA(){
     }
 }
 
+//A função abaixo preenche a matriz B com valores definidos pelo usuário.
 void preenchimentoManualMatrizB(){
     int i, j;
     if(b == 0){
@@ -109,6 +131,7 @@ void preenchimentoManualMatrizB(){
     }
 }
 
+//A função abaixo realiza a soma entre aa matrizes A e B.
 void soma(){
     int i, j;
     if((prcA == 0 && prcB == 1) || (prcA == 1 && prcB == 0) || (prcA == 0 && prcB == 0)){
@@ -120,7 +143,7 @@ void soma(){
                     C.x[i][j] = A.x[i][j] + B.x[i][j];
                 }
             }
-            printf("Opera��o realizada com sucesso!\n");
+            printf("Operação realizada com sucesso!\n");
             c = 1;
         } else {
             printf("ERRO! Dimensoes diferentes.\n");
@@ -128,6 +151,7 @@ void soma(){
     }
 }
 
+//A função abaixo realiza o diferença entre aa matrizes A e B.
 void diferenca(){
     int i, j;
     if((prcA == 0 && prcB == 1) || (prcA == 1 && prcB == 0) || (prcA == 0 && prcB == 0)){
@@ -139,7 +163,7 @@ void diferenca(){
                     C.x[i][j] = A.x[i][j] - B.x[i][j];
                 }
             }
-            printf("Opera��o realizada com sucesso!\n");
+            printf("Operação realizada com sucesso!\n");
             c = 1;
         } else {
             printf("ERRO! Dimensoes diferentes.\n");
@@ -147,6 +171,7 @@ void diferenca(){
     }
 }
 
+//A função abaixo realiza o produto entre aa matrizes A e B.
 void produto(){
     int i, j, k;
     if((prcA == 0 && prcB == 1) || (prcA == 1 && prcB == 0) || (prcA == 0 && prcB == 0)){
@@ -169,6 +194,7 @@ void produto(){
     }
 }
 
+//A função abaixo imprime a matriz A.
 void imprimirMatrizA(){
     int i,j;
     if(prcA == 0){
@@ -189,6 +215,8 @@ void imprimirMatrizA(){
         }
     }
 }
+
+//A função abaixo imprime a matriz B.
 void imprimirMatrizB(){
     int i,j;
     if(prcB == 0){
@@ -211,6 +239,7 @@ void imprimirMatrizB(){
     }
 }
 
+//A função abaixo imprime a matriz C.
 void imprimirMatrizC(){
     int i, j;
     if(c == 0){
@@ -225,6 +254,7 @@ void imprimirMatrizC(){
     }
 }
 
+//A função abaixo lê a matriz A de um arquivo especificado pelo usuáiro.
 void lerMatrizAarquivo(){     
     int i, j;
     char endA[50];
@@ -241,7 +271,7 @@ void lerMatrizAarquivo(){
                 fscanf(file,"%f", &A.x[i][j]);
             }
         }
-        printf("Processor realizado com sucesso!\n");
+        printf("Processo realizado com sucesso!\n");
         a = 1;
         prcA = 1;
         fclose(file);
@@ -249,6 +279,7 @@ void lerMatrizAarquivo(){
     
 }
 
+//A função abaixo lê a matriz B de um arquivo especificado pelo usuáiro.
 void lerMatrizBarquivo(){ 
     int i, j;
     char endB[50];
@@ -272,6 +303,7 @@ void lerMatrizBarquivo(){
     }
 }
 
+//A função abaixo imprime a matriz C em um arquivo especificado pelo usuáiro.
 void imprimirMatrizCarquivo(){
     int i, j;
     char endC[50];
@@ -294,17 +326,19 @@ void imprimirMatrizCarquivo(){
     }
 }
 int main() {  
-    //Declaracao de uma vari�vel utilizada como booleana chamada 'bo'.
+    /*Declaracao de uma variável utilizada como booleana chamada 'bo'.
+    Enquanto 'bo == 0' a lista de opções fica aparecendo para o usuário após a realização de cada operação.
+     Se 'b == 1' o programa pára de ser executado.*/
     int bo;
     bo = 0;
     do{
-        //Declaracao de variavel 'ope' para armazenar o numero da operacao escolhido pelo usuario. Logo ap�s, a lista.
+        //Declaracao de variavel 'ope' para armazenar o numero da operacao escolhido pelo usuario.
         int ope;
         printf("PROGRAMA DE MANIPULACAO DE MATRIZES\n"
                 "(1) Definir o tamanho da matriz A\n"
                 "(2) Definir o tamanho da matriz B\n"
-                "(3) Preencher a matriz A com valores aleat�rios\n"
-                "(4) Preencher a matriz B com valores aleat�rios\n"
+                "(3) Preencher a matriz A com valores aleatórios\n"
+                "(4) Preencher a matriz B com valores aleatórios\n"
                 "(5) Atribuir valores manualmente para os elementos da matriz A\n"
                 "(6) Atribuir valores manualmente para os elementos da matriz B\n"
                 "(7) Calcular A+B\n"
@@ -319,6 +353,8 @@ int main() {
                 "(16) Sair\n"
                 "digite sua operacao:");
         scanf("%d", &ope);
+        
+        //O uso da função 'switch' abaixo será útil para a iniciar uma função de acordo com a escolha da operação pelo usuário.
         switch(ope){
             case 1:
                 tamanhoMatrizA();
@@ -376,6 +412,3 @@ int main() {
     }while(bo == 0);
     return 0;
 }
-
-//Fiz apenas criar duas fun��es: lerMatrizAarquivo() e lerMatrizBarquivo();
-//Tamb�m permiti que possa imprimir A e B, fazendo prcA = 1 em ambas as fun��es acima.
